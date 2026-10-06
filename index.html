@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Chocoberry - Sweet & Delicious</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <a href="index.html" class="logo">
+
+            <div class="logo-text">
+                <h2>Chocoberry</h2>
+                <span>Sweet & Delicious</span>
+            </div>
+
+        </a>
+
+
+        <nav>
+
+            <a href="index.html" class="active">
+                Menu
+            </a>
+
+            <a href="keranjang.html" class="cart-link">
+
+                <span class="cart-icon">🛒</span>
+
+                <span class="cart-text">
+                    Keranjang
+                </span>
+
+                <b id="cart-count">0</b>
+
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <span class="hero-label">
+                FRESH • SWEET • DELICIOUS
+            </span>
+
+            <h1>
+                Nikmati Manisnya
+                <span>Chocoberry</span>
+            </h1>
+
+            <p>
+                Perpaduan strawberry segar dan cokelat
+                premium yang dibuat untuk memberikan
+                pengalaman rasa yang manis dan lezat.
+            </p>
+
+            <a href="#menu" class="primary-button">
+                Lihat Menu
+            </a>
+
+        </div>
+
+
+        <div class="hero-image">
+
+            <div class="hero-decoration"></div>
+
+            <img
+                src="img/logo.jpeg"
+                alt="Produk Chocoberry">
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MENU ================= -->
+
+    <main id="menu" class="menu-section">
+
+        <div class="section-heading">
+
+            <span>Produk Tersedia</span>
+
+            <h2>Menu Favorit</h2>
+
+            <p>
+                Pilih varian Chocoberry favorit kamu.
+            </p>
+
+        </div>
+
+
+        <div class="product-grid">
+
+
+            <!-- ================= CHOCOBERRY ================= -->
+
+            <article class="product-card">
+
+                <div class="product-image">
+
+                    <img
+                        src="img/choco.jpeg"
+                        alt="Chocoberry">
+
+                    <span class="product-tag">
+                        BEST SELLER
+                    </span>
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <h3>
+                        Chocoberry
+                    </h3>
+
+                    <p>
+                        Perpaduan strawberry segar
+                        dengan cokelat premium yang
+                        creamy, manis dan lezat.
+                    </p>
+
+
+                    <div class="product-footer">
+
+                        <strong>
+                            Rp25.000
+                        </strong>
+
+                        <button
+                            class="add-button"
+                            onclick="addToCart(1)">
+
+                            + Keranjang
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- ================= KUNAFA ================= -->
+
+            <article class="product-card">
+
+                <div class="product-image">
+
+                    <img
+                        src="img/kunafa.jpeg"
+                        alt="Chocoberry Kunafa">
+
+                    <span class="product-tag green">
+                        NEW
+                    </span>
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <h3>
+                        Chocoberry Kunafa
+                    </h3>
+
+                    <p>
+                        Perpaduan strawberry,
+                        cokelat premium dan kunafa
+                        renyah yang menggugah selera.
+                    </p>
+
+
+                    <div class="product-footer">
+
+                        <strong>
+                            Rp30.000
+                        </strong>
+
+                        <button
+                            class="add-button"
+                            onclick="addToCart(2)">
+
+                            + Keranjang
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-logo">
+
+            <img
+                src="img/logo.jpeg"
+                alt="Chocoberry">
+
+            <strong>
+                Chocoberry
+            </strong>
+
+        </div>
+
+        <p>
+            Sweet & Delicious
+        </p>
+
+        <small>
+            © 2026 Chocoberry. All Rights Reserved.
+        </small>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

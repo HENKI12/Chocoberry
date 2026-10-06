@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Checkout - Chocoberry
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <a
+            href="index.html"
+            class="logo">
+
+            <img
+                src="img/logo.jpeg"
+                alt="Logo Chocoberry">
+
+            <div class="logo-text">
+
+                <h2>
+                    Chocoberry
+                </h2>
+
+                <span>
+                    Sweet & Delicious
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <nav>
+
+            <a href="index.html">
+                Menu
+            </a>
+
+            <a
+                href="keranjang.html"
+                class="cart-link">
+
+                <span class="cart-icon">
+                    🛒
+                </span>
+
+                <span class="cart-text">
+                    Keranjang
+                </span>
+
+                <b id="cart-count">
+                    0
+                </b>
+
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= CHECKOUT ================= -->
+
+    <main class="page-container">
+
+        <div class="page-heading">
+
+            <span>
+                CHECKOUT
+            </span>
+
+            <h1>
+                Konfirmasi Pembelian
+            </h1>
+
+            <p>
+                Periksa kembali pesanan sebelum melakukan pembayaran.
+            </p>
+
+        </div>
+
+
+        <div id="checkout-container">
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= SUCCESS POPUP ================= -->
+
+    <div
+        id="success-modal"
+        class="modal">
+
+        <div class="modal-box">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <h2>
+                Pembelian Berhasil!
+            </h2>
+
+            <p>
+                Terima kasih telah membeli produk
+                Chocoberry. Pesanan kamu sedang diproses.
+            </p>
+
+            <button
+                onclick="closeModal()"
+                class="primary-button">
+
+                Kembali ke Menu
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-logo">
+
+            <img
+                src="img/logo.jpeg"
+                alt="Chocoberry">
+
+            <strong>
+                Chocoberry
+            </strong>
+
+        </div>
+
+        <p>
+            Sweet & Delicious
+        </p>
+
+        <small>
+            © 2026 Chocoberry. All Rights Reserved.
+        </small>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
