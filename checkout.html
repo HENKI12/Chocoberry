@@ -50,7 +50,11 @@
         </a>
 
 
-        <nav>
+        <button class="menu-toggle" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="site-navigation">
+            <span></span><span></span><span></span>
+        </button>
+
+        <nav id="site-navigation">
 
             <a href="index.html">
                 Menu
@@ -128,12 +132,28 @@
                 Chocoberry. Pesanan kamu sedang diproses.
             </p>
 
+            <p id="success-order-details" class="success-order-details"></p>
+
+            <button
+                id="print-receipt-button"
+                onclick="printReceipt()"
+                class="primary-button print-receipt-button"
+                hidden>
+                Cetak Struk
+            </button>
+
+            <button
+                id="whatsapp-receipt-button"
+                onclick="shareReceiptWhatsApp()"
+                class="secondary-button print-receipt-button"
+                hidden>
+                Kirim Struk via WhatsApp
+            </button>
+
             <button
                 onclick="closeModal()"
-                class="primary-button">
-
+                class="secondary-button print-receipt-button">
                 Kembali ke Menu
-
             </button>
 
         </div>

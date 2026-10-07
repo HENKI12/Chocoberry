@@ -59,7 +59,6 @@ let cart =
         )
     ) || [];
 
-
 /* =========================================
    SAVE CART
 ========================================= */
@@ -530,12 +529,8 @@ function checkout() {
         JSON.stringify(selected)
     );
 
-
-    window.location.href =
-        "checkout.html";
-
+    window.location.href = "checkout.html";
 }
-
 
 /* =========================================
    RENDER CHECKOUT
@@ -596,7 +591,11 @@ function renderCheckout() {
 
     let html = `
 
-        <div class="checkout-box">
+        <form class="checkout-box" id="checkout-customer-form" onsubmit="return false;">
+
+            <h3>Data Pemesan</h3>
+            <label class="receipt-field">Nama<input name="customerName" required minlength="2" autocomplete="name"></label>
+            <label class="receipt-field">Nomor WhatsApp<input name="customerPhone" type="tel" required autocomplete="tel" pattern="(?:\\+?62|0)8[0-9]{7,11}" title="Gunakan nomor Indonesia, misalnya 081234567890"><small>Contoh: 081234567890</small></label>
 
             <h3>
                 Ringkasan Pesanan
@@ -659,7 +658,6 @@ function renderCheckout() {
     const total =
         getTotal(items);
 
-
     html += `
 
             <div class="checkout-total">
@@ -674,8 +672,25 @@ function renderCheckout() {
 
             </div>
 
+            <fieldset class="payment-methods">
+                <legend>Metode Pembayaran</legend>
+                <label class="payment-method-option">
+                    <input type="radio" name="payment-method" value="transfer" required>
+                    <span><strong>Transfer Bank</strong><small>Transfer manual ke rekening toko</small></span>
+                </label>
+                <label class="payment-method-option">
+                    <input type="radio" name="payment-method" value="qris" required>
+                    <span><strong>QRIS</strong><small>Bayar dengan aplikasi pembayaran</small></span>
+                </label>
+                <label class="payment-method-option">
+                    <input type="radio" name="payment-method" value="cod" required>
+                    <span><strong>Bayar saat diterima</strong><small>Bayar langsung ketika pesanan diterima</small></span>
+                </label>
+            </fieldset>
+
 
             <button
+                type="button"
                 onclick="pay()"
                 class="pay-button">
 
@@ -683,7 +698,7 @@ function renderCheckout() {
 
             </button>
 
-        </div>
+        </form>
 
     `;
 
@@ -708,6 +723,35 @@ function pay() {
 
 
     if (items.length === 0) return;
+
+    const selectedPayment = document.querySelector('input[name="payment-method"]:checked');
+    if (!selectedPayment) {
+        alert("Silakan pilih metode pembayaran.");
+        return;
+    }
+    const paymentLabels = { transfer: "Transfer Bank", qris: "QRIS", cod: "Bayar saat diterima" };
+    const paymentLabel = paymentLabels[selectedPayment.value] || paymentLabels.transfer;
+    const customerForm = document.getElementById("checkout-customer-form");
+    if (!customerForm || !customerForm.reportValidity()) return;
+    const customer = {
+        name: customerForm.elements.customerName.value.trim(),
+        phone: customerForm.elements.customerPhone.value.trim()
+    };
+    const receipt = {
+        number: `CB-${Date.now().toString().slice(-8)}`,
+        date: new Date().toLocaleString("id-ID"),
+        customer,
+        paymentMethod: paymentLabel,
+        items,
+        total: getTotal(items)
+    };
+    localStorage.setItem("chocoberryLastReceipt", JSON.stringify(receipt));
+    const orderDetails = document.getElementById("success-order-details");
+    if (orderDetails) orderDetails.textContent = `No. ${receipt.number}\nNama: ${customer.name}\nWhatsApp: ${customer.phone}\nTotal: ${rupiah(receipt.total)}\nMetode pembayaran: ${paymentLabel}`;
+    const printButton = document.getElementById("print-receipt-button");
+    if (printButton) printButton.hidden = false;
+    const whatsappButton = document.getElementById("whatsapp-receipt-button");
+    if (whatsappButton) whatsappButton.hidden = false;
 
 
     const ids =
@@ -744,6 +788,58 @@ function pay() {
 
     }
 
+}
+
+function printReceipt() {
+    const receipt = JSON.parse(localStorage.getItem("chocoberryLastReceipt") || "null");
+    if (!receipt) {
+        alert("Informasi struk tidak ditemukan.");
+        return;
+    }
+    const printWindow = window.open("", "chocoberry-receipt", "width=440,height=700");
+    if (!printWindow) {
+        alert("Popup cetak diblokir browser. Izinkan popup lalu coba lagi.");
+        return;
+    }
+    const escapeReceiptText = value => String(value).replace(/[&<>\"']/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" })[char]);
+    const rows = receipt.items.map(item => `<div class="item"><strong>${escapeReceiptText(item.name)}</strong><span>${item.quantity} × ${rupiah(item.price)} = ${rupiah(item.price * item.quantity)}</span></div>`).join("");
+    printWindow.onafterprint = function () {
+        if (window.opener && !window.opener.closed) window.opener.location.href = "index.html";
+        printWindow.close();
+    };
+    printWindow.document.write(`<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Struk ${escapeReceiptText(receipt.number)}</title><style>@page{size:80mm auto;margin:5mm}*{box-sizing:border-box}body{width:70mm;margin:0 auto;color:#332521;font:12px/1.5 Arial,sans-serif}.center{text-align:center}.brand{font-size:20px;font-weight:bold}.muted{color:#725f58}.rule{border:0;border-top:1px dashed #8e7b74;margin:12px 0}.item{display:flex;flex-direction:column;margin:9px 0}.item span{color:#725f58}.total{display:flex;justify-content:space-between;font-size:14px;font-weight:bold}.footer{margin-top:18px;text-align:center}</style></head><body><header class="center"><div class="brand">Chocoberry</div><div class="muted">Sweet & Delicious</div></header><hr class="rule"><div>No. Struk: ${escapeReceiptText(receipt.number)}</div><div>Tanggal: ${escapeReceiptText(receipt.date)}</div><div>Nama: ${escapeReceiptText(receipt.customer.name)}</div><div>WhatsApp: ${escapeReceiptText(receipt.customer.phone)}</div><hr class="rule">${rows}<hr class="rule"><div class="total"><span>Total</span><span>${rupiah(receipt.total)}</span></div><div>Metode: ${escapeReceiptText(receipt.paymentMethod)}</div><p class="footer">Terima kasih telah berbelanja!</p><script>window.onload=function(){setTimeout(function(){window.print()},250)};<\/script></body></html>`);
+    printWindow.document.close();
+}
+
+function shareReceiptWhatsApp() {
+    const receipt = JSON.parse(localStorage.getItem("chocoberryLastReceipt") || "null");
+    if (!receipt) {
+        alert("Informasi struk tidak ditemukan.");
+        return;
+    }
+    let recipientPhone = String(receipt.customer.phone || "").replace(/\D/g, "");
+    if (recipientPhone.startsWith("0")) recipientPhone = `62${recipientPhone.slice(1)}`;
+    if (!/^62[0-9]{8,13}$/.test(recipientPhone)) {
+        alert("Nomor WhatsApp pada struk tidak valid.");
+        return;
+    }
+    const itemLines = receipt.items.map(item =>
+        `• ${item.name} x${item.quantity} — ${rupiah(item.price * item.quantity)}`
+    );
+    const message = [
+        "*INVOICE CHOCOBERRY*",
+        `No. pesanan: ${receipt.number}`,
+        `Tanggal: ${receipt.date}`,
+        `Nama: ${receipt.customer.name}`,
+        `WhatsApp: ${receipt.customer.phone}`,
+        "",
+        ...itemLines,
+        "",
+        `Total: ${rupiah(receipt.total)}`,
+        `Metode pembayaran: ${receipt.paymentMethod}`
+    ].join("\n");
+    const whatsappUrl = `https://wa.me/${recipientPhone}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
 }
 
 
@@ -796,6 +892,36 @@ document.addEventListener(
 ========================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
+
+    const menuToggle = document.querySelector(".menu-toggle");
+    const siteNavigation = document.getElementById("site-navigation");
+
+    if (menuToggle && siteNavigation) {
+        function closeMenu() {
+            menuToggle.setAttribute("aria-expanded", "false");
+            menuToggle.setAttribute("aria-label", "Buka menu");
+            siteNavigation.classList.remove("open");
+        }
+
+        menuToggle.addEventListener("click", function () {
+            const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+            menuToggle.setAttribute("aria-expanded", String(!isOpen));
+            menuToggle.setAttribute("aria-label", isOpen ? "Buka menu" : "Tutup menu");
+            siteNavigation.classList.toggle("open", !isOpen);
+        });
+
+        siteNavigation.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", closeMenu);
+        });
+
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape") closeMenu();
+        });
+
+        document.addEventListener("click", event => {
+            if (!siteNavigation.contains(event.target) && !menuToggle.contains(event.target)) closeMenu();
+        });
+    }
 
     const navLinks = document.querySelectorAll(".nav-link");
 
