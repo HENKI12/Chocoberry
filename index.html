@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 
@@ -12,41 +13,52 @@
 
 <body>
 
-    <!-- ================= NAVBAR ================= -->
 
-    <header class="navbar">
+<!-- ================= NAVBAR ================= -->
 
-        <a href="index.html" class="logo">
+<header class="navbar">
 
-            <div class="logo-text">
-                <h2>Chocoberry</h2>
-                <span>Sweet & Delicious</span>
-            </div>
+    <a href="index.html" class="logo">
+
+        <div class="logo-text">
+            <h2>Chocoberry</h2>
+            <span>Sweet & Delicious</span>
+        </div>
+
+    </a>
+
+
+    <nav>
+
+        <a href="#menu" class="nav-link active">
+            Menu
+        </a>
+
+        <a href="#kontak" class="nav-link">
+            Kontak
+        </a>
+
+        <a href="#lokasi" class="nav-link">
+            Lokasi
+        </a>
+
+        <a href="keranjang.html" class="cart-link">
+
+            <span class="cart-icon">🛒</span>
+
+            <span class="cart-text">
+                Keranjang
+            </span>
+
+            <b id="cart-count">0</b>
 
         </a>
 
+    </nav>
 
-        <nav>
+</header>
 
-            <a href="index.html" class="active">
-                Menu
-            </a>
 
-            <a href="keranjang.html" class="cart-link">
-
-                <span class="cart-icon">🛒</span>
-
-                <span class="cart-text">
-                    Keranjang
-                </span>
-
-                <b id="cart-count">0</b>
-
-            </a>
-
-        </nav>
-
-    </header>
 
 
     <!-- ================= HERO ================= -->
@@ -117,7 +129,7 @@
                 <div class="product-image">
 
                     <img
-                        src="img/choco.jpeg"
+                        src="img/cho.jpeg"
                         alt="Chocoberry">
 
                     <span class="product-tag">
@@ -168,7 +180,7 @@
                 <div class="product-image">
 
                     <img
-                        src="img/kunafa.jpeg"
+                        src="img/kuna.jpeg"
                         alt="Chocoberry Kunafa">
 
                     <span class="product-tag green">
@@ -211,10 +223,194 @@
 
             </article>
 
+            <!-- ================= CHEWY ================= -->
+
+            <article class="product-card">
+
+                <div class="product-image">
+
+                    <img
+                        src="img/chewy.jpeg"
+                        alt="Chocoberry Chewy">
+
+                </div>
+
+                <div class="product-info">
+
+                    <h3>
+                        Chocoberry Chewy
+                    </h3>
+
+                    <p>
+                        Perpaduan strawberry segar
+                        dengan cokelat premium yang
+                        creamy, manis dan lezat.
+                    </p>
+
+                    <div class="product-footer">
+
+                        <strong>
+                            Rp28.000
+                        </strong>
+
+                        <button
+                            class="add-button"
+                            onclick="addToCart(3)">
+
+                            + Keranjang
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
         </div>
 
     </main>
 
+
+
+<!-- ================= KONTAK ================= -->
+
+<section id="kontak" class="contact-section">
+
+    <div class="section-heading">
+
+        <span>Hubungi Kami</span>
+
+        <h2>Kontak</h2>
+
+        <p>
+            hubungi kami untuk pemesanan dan informasi lebih lanjut.
+        </p>
+        <p>
+            Klik tombol di bawah untuk menghubungi kami melalui WhatsApp.
+        </p>
+
+    </div>
+
+
+    <div class="contact-content">
+
+
+        <!-- WHATSAPP -->
+
+        <a
+            href="https://wa.me/6285828354645"
+            target="_blank"
+            class="contact-card">
+
+            <div class="contact-icon whatsapp-icon">
+
+                <img
+                    src="img/whatsapp.png"
+                    alt="WhatsApp">
+
+            </div>
+
+            <h3>WhatsApp</h3>
+
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+    <!-- ================= LOKASI ================= -->
+
+<section id="lokasi" class="location-section">
+
+    <div class="section-heading">
+
+        <span>Temukan Kami</span>
+
+        <h2>Lokasi</h2>
+
+        <p>
+            Kunjungi outlet Chocoberry dan nikmati
+            produk favoritmu secara langsung.
+        </p>
+
+    </div>
+
+
+    <div class="location-container">
+
+        <!-- GOOGLE MAPS -->
+
+        <div class="map-container">
+
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3989.8174914607744!2d109.37104417496452!3d-0.03693239996270055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMMKwMDInMTMuMCJTIDEwOcKwMjInMjUuMCJF!5e0!3m2!1sid!2sid!4v1791300373552!5m2!1sid!2sid"
+                width="600"
+                height="450"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin">
+            </iframe>
+
+        </div>
+
+
+        <!-- INFORMASI LOKASI -->
+
+        <div class="location-info">
+
+            <div class="location-icon">
+                📍
+            </div>
+
+            <h3>Chocoberry</h3>
+
+            <p>
+                Temukan lokasi Chocoberry melalui
+                Google Maps dan kunjungi kami secara langsung.
+            </p>
+
+            <a
+                href="https://www.google.com/maps/search/?api=1&query=-0.03693239996270055,109.37104417496452"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="primary-button">
+
+                📍 Buka di Google Maps
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<div id="cart-success-modal" class="cart-success-modal">
+
+    <div class="cart-success-box">
+
+        <div class="cart-success-icon">
+            ✓
+        </div>
+
+        <h3>Berhasil!</h3>
+
+        <p class="cart-success-message">
+            Produk berhasil ditambahkan ke keranjang.
+        </p>
+
+        <button onclick="document.getElementById('cart-success-modal').classList.remove('active')">
+            Lanjut Belanja
+        </button>
+
+    </div>
+
+</div>
 
     <!-- ================= FOOTER ================= -->
 

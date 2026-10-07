@@ -28,7 +28,22 @@ const products = [
 
         description:
             "Perpaduan strawberry, cokelat premium dan kunafa renyah."
+    },
+
+    {
+        id: 3,
+
+        name: "Chocoberry Chewy",
+
+        price: 28000,
+
+        image: "img/chewy.jpeg",
+
+        description:
+            "Perpaduan strawberry segar dengan cokelat premium yang creamy, manis dan lezat."
     }
+
+
 
 ];
 
@@ -156,11 +171,28 @@ function addToCart(id) {
     updateCartCount();
 
 
-    alert(
-        product.name +
-        " berhasil ditambahkan ke keranjang."
-    );
+   showCartSuccess(product.name);
 
+}
+
+function showCartSuccess(productName) {
+
+    const modal = document.getElementById("cart-success-modal");
+
+    if (!modal) return;
+
+    const message = modal.querySelector(".cart-success-message");
+
+    if (message) {
+        message.textContent =
+            productName + " berhasil ditambahkan ke keranjang.";
+    }
+
+    modal.classList.add("active");
+
+    setTimeout(() => {
+        modal.classList.remove("active");
+    }, 2500);
 }
 
 
@@ -419,7 +451,7 @@ function renderCart() {
                         )
                     ">
 
-                    🗑
+                    🗑️
 
                 </button>
 
@@ -758,3 +790,47 @@ document.addEventListener(
 
     }
 );
+
+/* =========================================
+   NAVBAR ACTIVE ON SCROLL
+========================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    const sections = document.querySelectorAll(
+        "#menu, #kontak, #lokasi"
+    );
+
+    function setActiveNav() {
+
+        let current = "menu";
+
+        sections.forEach(section => {
+
+            const sectionTop = section.offsetTop - 120;
+
+            if (window.scrollY >= sectionTop) {
+                current = section.getAttribute("id");
+            }
+
+        });
+
+        navLinks.forEach(link => {
+
+            link.classList.remove("active");
+
+            if (link.getAttribute("href") === "#" + current) {
+                link.classList.add("active");
+            }
+
+        });
+
+    }
+
+    window.addEventListener("scroll", setActiveNav);
+
+    setActiveNav();
+
+});

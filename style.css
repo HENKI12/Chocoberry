@@ -20,7 +20,7 @@ body {
         Helvetica,
         sans-serif;
 
-    background: #fffdfb;
+    background: #49332e;
 
     color: #49332e;
 
@@ -367,11 +367,13 @@ nav a.active {
 
 
 .section-heading span,
+
+
 .page-heading span {
 
     color: #66876d;
 
-    font-size: 11px;
+    font-size: 14px;
 
     font-weight: bold;
 
@@ -384,16 +386,16 @@ nav a.active {
 
     margin: 7px 0;
 
-    color: #49302a;
+    color: #ffff;
 
-    font-size: 34px;
+    font-size: 40px;
 
 }
 
 
 .section-heading p {
 
-    color: #806d67;
+    color: #bebcbb;
 
 }
 
@@ -524,6 +526,7 @@ nav a.active {
 
 .product-info {
 
+    background: #d65c7a;
     padding: 23px;
 
 }
@@ -531,7 +534,7 @@ nav a.active {
 
 .product-info h3 {
 
-    color: #49302a;
+    color: #ffff;
 
     font-size: 20px;
 
@@ -544,7 +547,7 @@ nav a.active {
 
     min-height: 65px;
 
-    color: #806d67;
+    color: #ffff;
 
     font-size: 13px;
 
@@ -568,7 +571,7 @@ nav a.active {
 
 .product-footer strong {
 
-    color: #d65c7a;
+    color: #ffff;
 
     font-size: 19px;
 
@@ -631,7 +634,7 @@ nav a.active {
 
     margin: 5px 0;
 
-    color: #49302a;
+    color: #ffff;
 
     font-size: 38px;
 
@@ -640,7 +643,7 @@ nav a.active {
 
 .page-heading p {
 
-    color: #806d67;
+    color: #adb4b2;
 
 }
 
@@ -1177,6 +1180,267 @@ nav a.active {
 
 }
 
+/* =========================================
+   KONTAK
+========================================= */
+
+.contact-section {
+    padding: 80px 8%;
+    background: #fff6f4;
+}
+
+.contact-section .section-heading {
+    margin-bottom: 35px;
+}
+
+.contact-section .section-heading h2 {
+    color: #49302a;
+}
+
+.contact-section .section-heading p {
+    color: #806d67;
+}
+
+.contact-content {
+    max-width: 300px;
+    margin: auto;
+
+    display: grid;
+    gap: 20px;
+}
+
+.contact-card {
+    padding: 28px 20px;
+
+    text-align: center;
+
+    background: white;
+    border: 1px solid #eee6e2;
+    border-radius: 14px;
+
+    transition: 0.25s;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 15px 30px rgba(70, 40, 34, 0.08);
+}
+
+.contact-icon {
+    width: 55px;
+    height: 55px;
+    
+
+    margin: 0 auto 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #fce4ea;
+
+    font-size: 25px;
+}
+
+.contact-card h3 {
+    margin-bottom: 7px;
+
+    color: #49302a;
+    font-size: 17px;
+}
+
+.contact-card p {
+    color: #806d67;
+    font-size: 13px;
+}
+
+
+/* =========================================
+   LOKASI
+========================================= */
+
+.location-section {
+    padding: 80px 8%;
+    background: #49332e;
+}
+
+.location-section .section-heading {
+    margin-bottom: 35px;
+}
+
+.location-section .section-heading h2 {
+    color: white;
+}
+
+.location-section .section-heading p {
+    color: #d5c5c0;
+}
+
+
+/* LOCATION CONTAINER */
+
+.location-container {
+    max-width: 1000px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+
+    background: white;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+
+/* MAP */
+
+.map-container {
+    width: 100%;
+    min-height: 400px;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+
+    display: block;
+
+    border: none;
+}
+
+
+/* LOCATION INFO */
+
+.location-info {
+    padding: 40px 30px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.location-icon {
+    width: 60px;
+    height: 60px;
+
+    margin-bottom: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #e7efe8;
+
+    font-size: 28px;
+}
+
+.location-info h3 {
+    margin-bottom: 8px;
+
+    color: #49302a;
+
+    font-size: 22px;
+}
+
+.location-info p {
+    margin-bottom: 22px;
+
+    color: #806d67;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* BUTTON */
+
+.location-info .primary-button {
+    display: inline-block;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .location-section {
+        padding: 65px 5%;
+    }
+
+    .location-container {
+        grid-template-columns: 1fr;
+    }
+
+    .map-container {
+        min-height: 300px;
+    }
+
+    .map-container iframe {
+        min-height: 300px;
+    }
+
+    .location-info {
+        padding: 30px 25px;
+
+        align-items: center;
+
+        text-align: center;
+    }
+
+    .location-info .primary-button {
+        width: 100%;
+
+        text-align: center;
+    }
+
+}
+
+/* =========================================
+   NAVBAR - TAMBAHAN MENU
+========================================= */
+
+nav a:not(.cart-link) {
+    position: relative;
+}
+
+nav a:not(.cart-link)::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -7px;
+
+    width: 0;
+    height: 2px;
+
+    background: #d65c7a;
+
+    transition: 0.2s;
+}
+
+nav a:not(.cart-link):hover::after,
+nav a:not(.cart-link).active::after {
+    width: 100%;
+}
+
 
 /* =========================================
    FOOTER
@@ -1188,7 +1452,7 @@ footer {
 
     text-align: center;
 
-    background: #49302a;
+    background: #66876d;
 
     color: white;
 
@@ -1212,9 +1476,9 @@ footer {
 
 .footer-logo img {
 
-    width: 30px;
+    width: 45px;
 
-    height: 30px;
+    height: 45px;
 
     object-fit: cover;
 
@@ -1236,7 +1500,7 @@ footer p {
 
 footer small {
 
-    color: #b79d95;
+    color: #fff;
 
     font-size: 11px;
 
@@ -1296,6 +1560,22 @@ footer small {
 
     }
 
+    @media (max-width: 900px) {
+
+    .navbar {
+        padding: 0 5%;
+    }
+
+    nav {
+        gap: 18px;
+    }
+
+    .contact-content {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
 
 }
 
@@ -1342,18 +1622,19 @@ footer small {
     }
 
 
-    nav {
+  nav {
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
 
-        gap: 15px;
+nav a {
+    font-size: 12px;
+}
 
-    }
-
-
-    nav a {
-
-        font-size: 13px;
-
-    }
+.cart-link {
+    gap: 4px;
+}
 
 
     .cart-text {
@@ -1599,6 +1880,42 @@ footer small {
 
     }
 
+    /* KONTAK */
+
+.contact-section {
+    padding: 65px 5%;
+}
+
+.contact-content {
+    grid-template-columns: 1fr;
+    max-width: 450px;
+}
+
+.contact-card {
+    padding: 22px 18px;
+}
+
+
+/* LOKASI */
+
+.location-section {
+    padding: 65px 5%;
+}
+
+.location-card {
+    padding: 22px;
+
+    flex-direction: column;
+
+    text-align: center;
+
+    gap: 15px;
+}
+
+.location-icon {
+    width: 58px;
+    height: 58px;
+    font-size: 26px;
 }
 
 
@@ -1692,4 +2009,222 @@ footer small {
 
     }
 
+    .navbar {
+    padding: 10px 4%;
+}
+
+nav {
+    gap: 7px;
+}
+
+nav a {
+    font-size: 11px;
+}
+
+.contact-section,
+.location-section {
+    padding: 55px 5%;
+}
+
+.location-card {
+    padding: 20px 15px;
+}
+
+.location-card .primary-button {
+    width: 100%;
+    text-align: center;
+}
+
+}
+}
+
+/* =========================================
+   NAVBAR ACTIVE
+========================================= */
+
+nav a {
+    position: relative;
+}
+
+nav a.nav-link::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -8px;
+
+    width: 0;
+    height: 2px;
+
+    background: #d65c7a;
+
+    transition: width 0.25s ease;
+}
+
+nav a.nav-link:hover,
+nav a.nav-link.active {
+    color: #d65c7a;
+}
+
+nav a.nav-link:hover::after,
+nav a.nav-link.active::after {
+    width: 100%;
+}
+
+
+/* =========================================
+   CONTACT CARD
+========================================= */
+
+.contact-card {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.contact-card:hover {
+    text-decoration: none;
+}
+
+.contact-icon {
+    width: 60px;
+    height: 60px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #fce4ea;
+
+    overflow: hidden;
+
+    transition: 0.25s;
+}
+
+.contact-icon img {
+    width: 32px;
+    height: 32px;
+
+    object-fit: contain;
+}
+
+.contact-card:hover .contact-icon {
+    transform: scale(1.08);
+}
+
+.contact-card h3 {
+    margin-bottom: 5px;
+
+    color: #49302a;
+
+    font-size: 17px;
+}
+
+.contact-card p {
+    color: #806d67;
+
+    font-size: 13px;
+}
+
+
+/* Warna background logo aplikasi */
+
+.whatsapp-icon {
+    background: #e7f5eb;
+}
+
+
+.cart-success-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: 0.3s ease;
+
+    z-index: 9999;
+}
+
+.cart-success-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cart-success-box {
+    width: 90%;
+    max-width: 380px;
+
+    background: #fff;
+    border-radius: 20px;
+
+    padding: 30px 25px;
+
+    text-align: center;
+
+    transform: scale(0.8);
+    transition: 0.3s ease;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.cart-success-modal.active .cart-success-box {
+    transform: scale(1);
+}
+
+.cart-success-icon {
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #4caf50;
+    color: white;
+
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.cart-success-box h3 {
+    margin: 0 0 10px;
+    font-size: 24px;
+}
+
+.cart-success-message {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.cart-success-box button {
+    border: none;
+    padding: 11px 22px;
+
+    border-radius: 10px;
+
+    background: #8b4513;
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 15px;
+}
+
+.cart-success-box button:hover {
+    opacity: 0.9;
 }
