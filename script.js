@@ -9,7 +9,7 @@ const products = [
 
         name: "Chocoberry",
 
-        price: 25000,
+        price: 35000,
 
         image: "img/choco.jpeg",
 
@@ -22,7 +22,7 @@ const products = [
 
         name: "Chocoberry Kunafa",
 
-        price: 30000,
+        price: 45000,
 
         image: "img/kunafa.jpeg",
 
@@ -35,7 +35,7 @@ const products = [
 
         name: "Chocoberry Chewy",
 
-        price: 28000,
+        price: 55000,
 
         image: "img/chewy.jpeg",
 
@@ -46,6 +46,27 @@ const products = [
 
 
 ];
+
+function showAppAlert(message) {
+    let modal = document.getElementById("app-alert-modal");
+    if (!modal) {
+        modal = document.createElement("div");
+        modal.id = "app-alert-modal";
+        modal.className = "app-alert-modal";
+        modal.setAttribute("role", "alertdialog");
+        modal.setAttribute("aria-modal", "true");
+        modal.setAttribute("aria-labelledby", "app-alert-title");
+        modal.innerHTML = `<div class="app-alert-box"><div class="app-alert-icon" aria-hidden="true">!</div><h2 id="app-alert-title">Perhatian</h2><p class="app-alert-message"></p><button type="button" class="app-alert-button">Mengerti</button></div>`;
+        document.body.appendChild(modal);
+        const close = () => modal.classList.remove("active");
+        modal.querySelector(".app-alert-button").addEventListener("click", close);
+        modal.addEventListener("click", event => { if (event.target === modal) close(); });
+        document.addEventListener("keydown", event => { if (event.key === "Escape") close(); });
+    }
+    modal.querySelector(".app-alert-message").textContent = message;
+    modal.classList.add("active");
+    modal.querySelector(".app-alert-button").focus();
+}
 
 
 /* =========================================
@@ -516,7 +537,7 @@ function checkout() {
 
     if (selected.length === 0) {
 
-        alert(
+        showAppAlert(
             "Silakan pilih minimal satu produk."
         );
 
@@ -726,13 +747,25 @@ function pay() {
 
     const selectedPayment = document.querySelector('input[name="payment-method"]:checked');
     if (!selectedPayment) {
-        alert("Silakan pilih metode pembayaran.");
+        showAppAlert("Silakan pilih metode pembayaran.");
         return;
     }
     const paymentLabels = { transfer: "Transfer Bank", qris: "QRIS", cod: "Bayar saat diterima" };
     const paymentLabel = paymentLabels[selectedPayment.value] || paymentLabels.transfer;
     const customerForm = document.getElementById("checkout-customer-form");
-    if (!customerForm || !customerForm.reportValidity()) return;
+    if (!customerForm) return;
+    const nameInput = customerForm.elements.customerName;
+    const phoneInput = customerForm.elements.customerPhone;
+    if (!nameInput.value.trim() || nameInput.validity.tooShort) {
+        showAppAlert(!nameInput.value.trim() ? "Silakan isi nama terlebih dahulu." : "Nama harus terdiri dari minimal 2 karakter.");
+        nameInput.focus();
+        return;
+    }
+    if (!phoneInput.value.trim() || phoneInput.validity.patternMismatch) {
+        showAppAlert(!phoneInput.value.trim() ? "Silakan isi nomor WhatsApp terlebih dahulu." : "Nomor WhatsApp tidak valid. Gunakan nomor Indonesia, misalnya 081234567890.");
+        phoneInput.focus();
+        return;
+    }
     const customer = {
         name: customerForm.elements.customerName.value.trim(),
         phone: customerForm.elements.customerPhone.value.trim()
@@ -793,12 +826,12 @@ function pay() {
 function printReceipt() {
     const receipt = JSON.parse(localStorage.getItem("chocoberryLastReceipt") || "null");
     if (!receipt) {
-        alert("Informasi struk tidak ditemukan.");
+        showAppAlert("Informasi struk tidak ditemukan.");
         return;
     }
     const printWindow = window.open("", "chocoberry-receipt", "width=440,height=700");
     if (!printWindow) {
-        alert("Popup cetak diblokir browser. Izinkan popup lalu coba lagi.");
+        showAppAlert("Popup cetak diblokir browser. Izinkan popup lalu coba lagi.");
         return;
     }
     const escapeReceiptText = value => String(value).replace(/[&<>\"']/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" })[char]);
@@ -814,13 +847,13 @@ function printReceipt() {
 function shareReceiptWhatsApp() {
     const receipt = JSON.parse(localStorage.getItem("chocoberryLastReceipt") || "null");
     if (!receipt) {
-        alert("Informasi struk tidak ditemukan.");
+        showAppAlert("Informasi struk tidak ditemukan.");
         return;
     }
     let recipientPhone = String(receipt.customer.phone || "").replace(/\D/g, "");
     if (recipientPhone.startsWith("0")) recipientPhone = `62${recipientPhone.slice(1)}`;
     if (!/^62[0-9]{8,13}$/.test(recipientPhone)) {
-        alert("Nomor WhatsApp pada struk tidak valid.");
+        showAppAlert("Nomor WhatsApp pada struk tidak valid.");
         return;
     }
     const itemLines = receipt.items.map(item =>

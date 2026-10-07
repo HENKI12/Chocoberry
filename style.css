@@ -2229,6 +2229,80 @@ nav a.nav-link.active::after {
     opacity: 0.9;
 }
 
+.app-alert-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(50, 35, 30, 0.55);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.app-alert-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.app-alert-box {
+    width: min(100%, 380px);
+    padding: 30px 25px;
+    border: 1px solid #f0e3dd;
+    border-radius: 20px;
+    background: #fffaf7;
+    box-shadow: 0 15px 40px rgba(50, 35, 30, 0.22);
+    text-align: center;
+    transform: translateY(10px) scale(0.97);
+    transition: transform 0.25s ease;
+}
+
+.app-alert-modal.active .app-alert-box {
+    transform: translateY(0) scale(1);
+}
+
+.app-alert-icon {
+    display: grid;
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 14px;
+    place-items: center;
+    border-radius: 50%;
+    background: #f8e9e3;
+    color: #8b4513;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.app-alert-box h2 {
+    margin: 0 0 8px;
+    color: #49302a;
+    font-size: 22px;
+}
+
+.app-alert-message {
+    margin: 0 0 20px;
+    color: #806d67;
+    line-height: 1.5;
+}
+
+.app-alert-button {
+    border: 0;
+    border-radius: 10px;
+    padding: 11px 24px;
+    background: #8b4513;
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+}
+
+.app-alert-button:hover {
+    background: #71370f;
+}
+
 /* Mobile navigation */
 .navbar .menu-toggle {
     display: none;
